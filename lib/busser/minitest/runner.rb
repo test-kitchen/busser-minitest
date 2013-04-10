@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 # -*- encoding: utf-8 -*-
 #
 # Author:: Fletcher Nichol (<fnichol@nichol.ca>)
@@ -16,21 +17,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require 'busser/runner_plugin'
+require 'rake/testtask'
 
-# A Busser runner plugin for Minitest.
-#
-# @author Fletcher Nichol <fnichol@nichol.ca>
-#
-class Busser::RunnerPlugin::Minitest < Busser::RunnerPlugin::Base
+abort "usage: #{File.basename($0)} <test_base_path>" if ARGV.first.nil?
 
-  postinstall do
-    install_gem("minitest")
-  end
+base_path = File.expand_path(ARGV.shift)
+test_files = ["#{base_path}/**/*_spec.rb", "#{base_path}/**/test_*.rb"]
 
-  def test
-    runner = File.join(File.dirname(__FILE__), %w{.. minitest runner.rb})
-
-    run_ruby_script!("#{runner} #{suite_path('minitest').to_s}")
-  end
+Rake::TestTask.new(:test) do |t|
+  t.libs = []
+  t.test_files = FileList[*test_files]
+  t.verbose = true
 end
+
+Rake::Task["test"].invoke
