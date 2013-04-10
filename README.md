@@ -1,6 +1,6 @@
 # <a name="title"></a> Busser::RunnerPlugin::Minitest
 
-A Busser runner plugin for Minitest
+A Busser runner plugin for the [minitest][minitest_site] testing library
 
 ## <a name="installation"></a> Installation and Setup
 
@@ -39,3 +39,5 @@ Apache 2.0 (see [LICENSE][license])
 [license]:          https://github.com/enter-github-user/busser-minitest/blob/master/LICENSE
 [repo]:             https://github.com/enter-github-user/busser-minitest
 [plugin_usage]:     http://docs.kitchen-ci.org/busser/plugin-usage
+
+[minitest_site]:    https://github.com/seattlerb/minitest
