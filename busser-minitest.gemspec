@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Busser::Minitest::VERSION
   spec.authors       = ['Fletcher Nichol']
   spec.email         = ['fnichol@nichol.ca']
-  spec.description   = %q{A Busser runner plugin for Minitest}
+  spec.description = %q{A Busser runner plugin for the minitest testing library}
   spec.summary       = spec.description
-  spec.homepage      = ''
+  spec.homepage      = 'https://github.com/fnichol/busser-minitest'
   spec.license       = 'Apache 2.0'
 
   spec.files         = `git ls-files`.split($/)
