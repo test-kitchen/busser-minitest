@@ -25,7 +25,7 @@ require 'busser/runner_plugin'
 class Busser::RunnerPlugin::Minitest < Busser::RunnerPlugin::Base
 
   postinstall do
-    install_gem("minitest")
+    install_gem("minitest", "< 5.0")
   end
 
   def test
