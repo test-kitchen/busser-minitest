@@ -10,8 +10,71 @@ A Busser runner plugin for the [minitest][minitest_site] testing library
 Please read the Busser [plugin usage][plugin_usage] page for more details.
 
 ## <a name="usage"></a> Usage
+Assume a cookwith with the following structure (some directories omitted for
+brevity).  This also assumes that your .kitchen.yml has been written with a
+suite per recipe.
 
-**TODO:** Write documentation explaining the structure/format of testing files.
+```
+.
+├── Berksfile
+├── Berksfile.lock
+├── CHANGELOG.md
+├── README.md
+├── Thorfile
+├── attributes
+│   └── default.rb
+├── chefignore
+├── definitions
+├── files
+│   └── default
+│       ├── bar.txt
+│       ├── foo.txt
+│       └── foobar.txt
+├── libraries
+├── metadata.rb
+├── providers
+├── recipes
+│   ├── bar.rb
+│   ├── default.rb
+│   └── foo.rb
+├── resources
+├── templates
+│   └── default
+```
+
+The test directory follows a similar structure to the recipes directory.  In the integration directory,
+there should be a directory for each recipe, which contains a directory for each busser being used.  In
+this example, we're only using minitest.  Finally, the actual test files themselves live inside the busser
+directory.  The test files must be named either test_*.rb or *_spec.rb in order to be parsed.
+
+```
+└── test
+    └── integration
+        ├── bar
+        │   └── minitest
+        │       └── test_bar.rb
+        ├── default
+        │   └── minitest
+        │       └── test_default.rb
+        └── foo
+            └── minitest
+                └── test_foo.rb
+```
+
+The test files use standard minitest assertions, constructs etc.  As an example, the test_default.rb file
+listed above might have the following content to check for the existance of a particulare file.
+
+
+```
+require 'minitest/autorun'
+
+describe "foobar::default" do
+
+  it "has created foobar.txt" do
+    assert File.exists?("/usr/local/foobar.txt")
+  end
+end
+```
 
 ## <a name="development"></a> Development
 
