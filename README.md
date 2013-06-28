@@ -11,7 +11,8 @@ Please read the Busser [plugin usage][plugin_usage] page for more details.
 
 ## <a name="usage"></a> Usage
 Assume a cookwith with the following structure (some directories omitted for
-brevity)
+brevity).  This also assumes that your .kitchen.yml has been written with a
+suite per recipe.
 
 ```
 .
