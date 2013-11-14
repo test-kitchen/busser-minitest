@@ -1,6 +1,6 @@
 # <a name="title"></a> Busser::RunnerPlugin::Minitest
 
-[![Build Status](https://travis-ci.org/fnichol/busser-minitest.png?branch=master)](https://travis-ci.org/fnichol/busser-minitest)
+[![Build Status](https://travis-ci.org/test-kitchen/busser-minitest.png?branch=master)](https://travis-ci.org/fnichol/busser-minitest)
 [![Code Climate](https://codeclimate.com/github/fnichol/busser-minitest.png)](https://codeclimate.com/github/fnichol/busser-minitest)
 
 A Busser runner plugin for the [minitest][minitest_site] testing library
