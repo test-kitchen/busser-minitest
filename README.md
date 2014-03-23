@@ -1,7 +1,9 @@
 # <a name="title"></a> Busser::RunnerPlugin::Minitest
 
+[![Gem Version](https://badge.fury.io/rb/busser-minitest.png)](http://badge.fury.io/rb/busser-minitest)
 [![Build Status](https://travis-ci.org/test-kitchen/busser-minitest.png?branch=master)](https://travis-ci.org/test-kitchen/busser-minitest)
 [![Code Climate](https://codeclimate.com/github/test-kitchen/busser-minitest.png)](https://codeclimate.com/github/test-kitchen/busser-minitest)
+[![Dependency Status](https://gemnasium.com/test-kitchen/busser-minitest.svg)](https://gemnasium.com/test-kitchen/busser-minitest)
 
 A Busser runner plugin for the [minitest][minitest_site] testing library
 
