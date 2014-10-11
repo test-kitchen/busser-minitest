@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require 'busser/runner_plugin'
+require "busser/runner_plugin"
 
 # A Busser runner plugin for Minitest.
 #
@@ -29,8 +29,8 @@ class Busser::RunnerPlugin::Minitest < Busser::RunnerPlugin::Base
   end
 
   def test
-    runner = File.join(File.dirname(__FILE__), %w{.. minitest runner.rb})
+    runner = File.join(File.dirname(__FILE__), %w[.. minitest runner.rb])
 
-    run_ruby_script!("#{runner} #{suite_path('minitest').to_s}")
+    run_ruby_script!("#{runner} #{suite_path("minitest")}")
   end
 end

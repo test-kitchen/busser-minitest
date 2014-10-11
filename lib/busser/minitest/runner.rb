@@ -17,9 +17,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require 'rake/testtask'
+require "rake/testtask"
 
-abort "usage: #{File.basename($0)} <test_base_path>" if ARGV.first.nil?
+if ARGV.first.nil?
+  abort "usage: #{File.basename($PROGRAM_NAME)} <test_base_path>"
+end
 
 base_path = File.expand_path(ARGV.shift)
 test_files = ["#{base_path}/**/*_spec.rb", "#{base_path}/**/test_*.rb"]
