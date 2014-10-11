@@ -1,3 +1,16 @@
+## 0.3.0 / 2014-10-11
+
+### New features
+
+* Support a Gemfile to pull in dependencies. ([@fnichol][])
+
+
+### Improvements
+
+* Update testing dependencies, freshen TravisCI build matrix, add style and complexity support. ([@fnichol][])
+* Allow Aruba tests to wait 45 seconds (vs. 30). ([@fnichol][])
+
+
 ## 0.2.0 / 2013-05-13
 
 ### Bug fixes
