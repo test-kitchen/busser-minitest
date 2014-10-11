@@ -26,11 +26,26 @@ class Busser::RunnerPlugin::Minitest < Busser::RunnerPlugin::Base
 
   postinstall do
     install_gem("minitest", "< 5.0")
+    install_gem("bundler")
   end
 
   def test
+    minitest_path = suite_path("minitest")
     runner = File.join(File.dirname(__FILE__), %w[.. minitest runner.rb])
 
-    run_ruby_script!("#{runner} #{suite_path("minitest")}")
+    if File.exist?(File.join(minitest_path, "Gemfile"))
+      banner("Gemfile found, bundle installing...")
+
+      # Bundle install local completes quickly if the gems are already found
+      # locally it fails if it needs to talk to the internet. The || below is
+      # the fallback to the internet-enabled version. It's a speed
+      # optimization.
+      Dir.chdir(minitest_path) do
+        run("PATH=#{ENV["PATH"]}:#{Gem.bindir}; " \
+          "bundle install --local || bundle install")
+      end
+    end
+
+    run_ruby_script!("#{runner} #{minitest_path}")
   end
 end
