@@ -12,9 +12,8 @@ A Busser runner plugin for the [minitest][minitest_site] testing library
 Please read the Busser [plugin usage][plugin_usage] page for more details.
 
 ## <a name="usage"></a> Usage
-Assume a cookwith with the following structure (some directories omitted for
-brevity).  This also assumes that your .kitchen.yml has been written with a
-suite per recipe.
+Assuming a cookbook with with the following structure (some directories omitted for
+brevity), and a .kitchen.yml has been written with one suite per recipe.
 
 ```
 .
@@ -64,7 +63,7 @@ directory.  The test files must be named either test_*.rb or *_spec.rb in order 
 ```
 
 The test files use standard minitest assertions, constructs etc.  As an example, the test_default.rb file
-listed above might have the following content to check for the existance of a particulare file.
+listed above might have the following content to check for the existence of a particulare file.
 
 
 ```
