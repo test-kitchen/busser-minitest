@@ -9,7 +9,7 @@ A Busser runner plugin for the [minitest][minitest_site] testing library
 
 ## <a name="installation"></a> Installation and Setup
 
-Please read the Busser [plugin usage][plugin_usage] page for more details.
+Until proper reference documentation is complete, the [Writing a Test](http://kitchen.ci/docs/getting-started/writing-test) section of the Test Kitchen's [Getting Started Guide](http://kitchen.ci/docs/getting-started/) gives a working example of creating test.
 
 ## <a name="usage"></a> Usage
 Assuming a cookbook with with the following structure (some directories omitted for
@@ -105,6 +105,5 @@ Apache 2.0 (see [LICENSE][license])
 [issues]:           https://github.com/enter-github-user/busser-minitest/issues
 [license]:          https://github.com/enter-github-user/busser-minitest/blob/master/LICENSE
 [repo]:             https://github.com/enter-github-user/busser-minitest
-[plugin_usage]:     http://docs.kitchen-ci.org/busser/plugin-usage
 
 [minitest_site]:    https://github.com/seattlerb/minitest
