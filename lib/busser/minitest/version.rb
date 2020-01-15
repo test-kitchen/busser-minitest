@@ -21,6 +21,6 @@ module Busser
   module Minitest
 
     # Version string for the Minitest Busser runner plugin
-    VERSION = "0.3.1.dev"
+    VERSION = "0.3.1.dev".freeze
   end
 end

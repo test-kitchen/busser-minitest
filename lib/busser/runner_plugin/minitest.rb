@@ -31,7 +31,7 @@ class Busser::RunnerPlugin::Minitest < Busser::RunnerPlugin::Base
 
   def test
     minitest_path = suite_path("minitest")
-    runner = File.join(File.dirname(__FILE__), %w[.. minitest runner.rb])
+    runner = File.join(File.dirname(__FILE__), %w{.. minitest runner.rb})
 
     if File.exist?(File.join(minitest_path, "Gemfile"))
       banner("Gemfile found, bundle installing...")

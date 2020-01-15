@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.description   = "A Busser runner plugin for the minitest testing library"
   gem.summary       = gem.description
   gem.homepage      = "https://github.com/fnichol/busser-minitest"
-  gem.license       = "Apache 2.0"
+  gem.license       = "Apache-2.0"
 
   gem.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   gem.executables   = []
@@ -22,7 +22,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "busser"
 
   gem.add_development_dependency "aruba"
-  gem.add_development_dependency "bundler", "~> 1.3"
+  gem.add_development_dependency "bundler"
   gem.add_development_dependency "countloc"
   gem.add_development_dependency "rake"
   gem.add_development_dependency "simplecov"
@@ -30,6 +30,5 @@ Gem::Specification.new do |gem|
   # style and complexity libraries are tightly version pinned as newer releases
   # may introduce new and undesireable style choices which would be immediately
   # enforced in CI
-  gem.add_development_dependency "finstyle",  "1.2.0"
-  gem.add_development_dependency "cane",      "2.6.2"
+  gem.add_development_dependency "chefstyle", "0.14"
 end
