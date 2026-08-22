@@ -1,7 +1,6 @@
 # Busser::RunnerPlugin::Minitest
 
 [![Gem Version](https://badge.fury.io/rb/busser-minitest.svg)](http://badge.fury.io/rb/busser-minitest)
-[![Code Climate](https://codeclimate.com/github/test-kitchen/busser-minitest.svg)](https://codeclimate.com/github/test-kitchen/busser-minitest)
 
 A Busser runner plugin for the [minitest][minitest_site] testing library
 
@@ -11,7 +10,7 @@ This software project is no longer under active development as it has no active 
 
 ## Installation and Setup
 
-Until proper reference documentation is complete, the [Writing a Test](http://kitchen.ci/docs/getting-started/writing-test) section of the Test Kitchen's [Getting Started Guide](http://kitchen.ci/docs/getting-started/) gives a working example of creating test.
+Until proper reference documentation is complete, the [Writing a Test](https://kitchen.ci/docs/writing-test) section of the Test Kitchen's [Getting Started Guide](https://kitchen.ci/docs/) gives a working example of creating test.
 
 ## Usage
 
@@ -104,9 +103,9 @@ Created and maintained by [Fletcher Nichol][author] (<fnichol@nichol.ca>)
 Apache 2.0 (see [LICENSE][license])
 
 
-[author]:           https://github.com/enter-github-user
-[issues]:           https://github.com/enter-github-user/busser-minitest/issues
-[license]:          https://github.com/enter-github-user/busser-minitest/blob/master/LICENSE
-[repo]:             https://github.com/enter-github-user/busser-minitest
+[author]:           https://github.com/test-kitchen
+[issues]:           https://github.com/test-kitchen/busser-minitest/issues
+[license]:          https://github.com/test-kitchen/busser-minitest/blob/main/LICENSE
+[repo]:             https://github.com/test-kitchen/busser-minitest
 
 [minitest_site]:    https://github.com/seattlerb/minitest
