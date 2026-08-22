@@ -27,8 +27,4 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "countloc"
   gem.add_development_dependency "rake"
   gem.add_development_dependency "simplecov"
-
-  # style and complexity libraries are tightly version pinned as newer releases
-  # may introduce new and undesirable style choices which would be immediately
-  # enforced in CI
 end

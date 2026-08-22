@@ -10,7 +10,6 @@ end
 desc "Run all test suites"
 task test: [:features]
 
-
 desc "Display LOC stats"
 task :stats do
   puts "\n## Production Code Stats"
