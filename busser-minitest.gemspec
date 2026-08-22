@@ -6,6 +6,7 @@ require "English"
 
 Gem::Specification.new do |gem|
   gem.name          = "busser-minitest"
+  gem.required_ruby_version = ">= 3.1"
   gem.version       = Busser::Minitest::VERSION
   gem.authors       = ["Fletcher Nichol"]
   gem.email         = ["fnichol@nichol.ca"]

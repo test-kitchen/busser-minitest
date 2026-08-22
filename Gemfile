@@ -8,3 +8,7 @@ group :guard do
   gem "guard-cane"
   gem "guard-rubocop"
 end
+
+group :cookstyle do
+  gem "cookstyle"
+end
