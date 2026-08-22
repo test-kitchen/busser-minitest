@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 source "https://rubygems.org"
 
 gemspec development_group: :test
@@ -7,7 +6,7 @@ group :cookstyle do
 end
 
 group :test do
-  gem "base64"  # cucumber 9.x needs it; not a default gem on Ruby 4.0
+  gem "base64" # cucumber 9.x needs it; not a default gem on Ruby 4.0
   gem "cucumber", "~> 9.0"
   gem "rake"
 end

@@ -1,11 +1,10 @@
-# coding: utf-8
-lib = File.expand_path("../lib", __FILE__)
+lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "busser/minitest/version"
 require "English"
 
 Gem::Specification.new do |gem|
-  gem.name          = "busser-minitest"
+  gem.name = "busser-minitest"
   gem.required_ruby_version = ">= 3.1"
   gem.version       = Busser::Minitest::VERSION
   gem.authors       = ["Fletcher Nichol"]
@@ -17,7 +16,6 @@ Gem::Specification.new do |gem|
 
   gem.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   gem.executables   = []
-  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
   gem.add_dependency "busser"
