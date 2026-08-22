@@ -6,7 +6,6 @@ gemspec
 group :guard do
   gem "guard-cucumber"
   gem "guard-cane"
-  gem "guard-rubocop"
 end
 
 group :cookstyle do
