@@ -23,7 +23,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency "busser"
 
   gem.add_development_dependency "aruba"
-  gem.add_development_dependency "bundler"
   gem.add_development_dependency "countloc"
   gem.add_development_dependency "rake"
   gem.add_development_dependency "simplecov"
