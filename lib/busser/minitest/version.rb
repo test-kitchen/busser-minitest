@@ -17,6 +17,7 @@
 
 module Busser
 
+  # Namespace for the minitest Busser runner plugin.
   module Minitest
 
     # Version string for the Minitest Busser runner plugin

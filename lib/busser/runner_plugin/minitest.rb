@@ -23,11 +23,20 @@ require "busser/runner_plugin"
 #
 class Busser::RunnerPlugin::Minitest < Busser::RunnerPlugin::Base
 
+  # Installs minitest and bundler onto the machine under test. Runs once, when
+  # Busser installs this plugin.
   postinstall do
     install_gem("minitest", ">= 6.0")
     install_gem("bundler")
   end
 
+  # Runs the suite's tests.
+  #
+  # If the suite ships a Gemfile its gems are installed first, so a suite can
+  # pull in extra assertion libraries. The install is tried with --local before
+  # falling back to the network, which keeps repeat runs off the internet.
+  #
+  # @return [void]
   def test
     minitest_path = suite_path("minitest")
     runner = File.join(File.dirname(__FILE__), %w{.. minitest runner.rb})
