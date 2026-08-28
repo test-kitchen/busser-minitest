@@ -88,6 +88,48 @@ before the run, which is how you pull in extra assertion libraries or anything
 else your tests need. The install is attempted with `--local` first and falls
 back to the network.
 
+## Using it with Test Kitchen
+
+This is how most people run it, and it needs no Busser commands of your own.
+Select the verifier in `kitchen.yml`:
+
+```yaml
+verifier:
+  name: busser
+
+suites:
+  - name: default
+```
+
+Then put your tests in a `minitest` directory inside the suite:
+
+```text
+test/integration/default/minitest/test_default.rb
+```
+
+`kitchen verify` installs Busser and this plugin on the instance and runs them.
+The directory name is what selects this plugin -- there is nothing else to
+configure.
+
+## When nothing runs
+
+If the suite files do not match what this plugin looks for, the run prints one
+line and **exits `0`**:
+
+```text
+-----> Running minitest test suite
+```
+
+No tests ran, and nothing said so. Work through these in order:
+
+1. **Is the directory named `minitest`?** That name alone selects this plugin.
+   `minitests/`, `tests/` or anything else is not picked up.
+2. **Do the filenames match?** Only `test_*.rb` and `*_spec.rb` are run,
+   searched recursively -- `smoke.rb` is *not* picked up.
+3. **Is the plugin installed?** `busser plugin list` shows what is available.
+4. **Is `BUSSER_ROOT` what you think?** `busser suite path` prints where suites
+   are actually being looked for.
+
 ## Contributing
 
 Bug reports and pull requests are welcome. See
