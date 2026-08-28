@@ -4,8 +4,10 @@ Feature: Test command
   I want my tests to run when the minitest runner plugin is installed
 
   Background:
-    Given a test BUSSER_ROOT directory named "busser-minitest-test"
+    Given a non bundler environment
+    And a test BUSSER_ROOT directory named "busser-minitest-test"
     And a sandboxed GEM_HOME directory named "busser-minitest-gem-home"
+    And this plugin is installed from the working tree
     When I successfully run `busser plugin install busser-minitest --force-postinstall`
     Given a suite directory named "minitest"
 
