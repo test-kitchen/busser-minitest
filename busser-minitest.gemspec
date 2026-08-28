@@ -1,26 +1,30 @@
 lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "busser/minitest/version"
-require "English"
 
-Gem::Specification.new do |gem|
-  gem.name = "busser-minitest"
-  gem.required_ruby_version = ">= 3.2"
-  gem.version       = Busser::Minitest::VERSION
-  gem.authors       = ["Fletcher Nichol"]
-  gem.email         = ["fnichol@nichol.ca"]
-  gem.description   = "A Busser runner plugin for the minitest testing library"
-  gem.summary       = gem.description
-  gem.homepage      = "https://github.com/fnichol/busser-minitest"
-  gem.license       = "Apache-2.0"
+Gem::Specification.new do |spec|
+  spec.name          = "busser-minitest"
+  spec.version       = Busser::Minitest::VERSION
+  spec.authors       = ["Fletcher Nichol"]
+  spec.email         = ["fnichol@nichol.ca"]
+  spec.description   = "A Busser runner plugin for the minitest testing library"
+  spec.summary       = spec.description
+  spec.homepage      = "https://github.com/test-kitchen/busser-minitest"
+  spec.license       = "Apache-2.0"
 
-  gem.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
-  gem.executables   = []
-  gem.require_paths = ["lib"]
+  spec.required_ruby_version = ">= 3.2"
 
-  gem.add_dependency "busser", ">= 0.9.0"
+  spec.files         = `git ls-files -z`.split("\x0")
+  spec.executables   = []
+  spec.require_paths = ["lib"]
 
-  gem.add_development_dependency "aruba", ">= 2.0"
-  gem.add_development_dependency "rake"
-  gem.add_development_dependency "simplecov"
+  spec.metadata = {
+    "bug_tracker_uri" => "#{spec.homepage}/issues",
+    "changelog_uri" => "#{spec.homepage}/blob/main/CHANGELOG.md",
+    "documentation_uri" => "#{spec.homepage}/blob/main/README.md",
+    "homepage_uri" => spec.homepage,
+    "source_code_uri" => spec.homepage,
+  }
+
+  spec.add_dependency "busser", ">= 0.9.0"
 end
