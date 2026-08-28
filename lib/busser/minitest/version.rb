@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 #
 # Author:: Fletcher Nichol (<fnichol@nichol.ca>)
 #
@@ -21,6 +20,6 @@ module Busser
   module Minitest
 
     # Version string for the Minitest Busser runner plugin
-    VERSION = "0.3.1.dev".freeze
+    VERSION = "0.3.0".freeze
   end
 end

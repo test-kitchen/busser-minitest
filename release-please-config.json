@@ -1,0 +1,15 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "bootstrap-sha": "f7971b73bf2aa670b5403ab76aef16e84d2ddd96",
+  "packages": {
+    ".": {
+      "package-name": "busser-minitest",
+      "changelog-path": "CHANGELOG.md",
+      "release-type": "ruby",
+      "include-component-in-tag": false,
+      "version-file": "lib/busser/minitest/version.rb",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true
+    }
+  }
+}

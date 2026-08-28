@@ -1,10 +1,18 @@
-# -*- encoding: utf-8 -*-
 source "https://rubygems.org"
 
 gemspec
 
-group :guard do
-  gem "guard-cucumber"
-  gem "guard-cane"
-  gem "guard-rubocop"
+group :cookstyle do
+  gem "cookstyle", ">= 9.0.0"
+end
+
+group :test do
+  gem "aruba", ">= 2.0"
+  gem "base64" # cucumber needs it; not a default gem on Ruby 4.0
+  gem "cucumber", ">= 11.1"
+  gem "rake"
+end
+
+group :development do
+  gem "simplecov"
 end
