@@ -15,6 +15,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+require "rbconfig" unless defined?(RbConfig)
+require "shellwords" unless defined?(Shellwords)
+
 require "busser/runner_plugin"
 
 # A Busser runner plugin for Minitest.
@@ -43,17 +46,47 @@ class Busser::RunnerPlugin::Minitest < Busser::RunnerPlugin::Base
 
     if File.exist?(File.join(minitest_path, "Gemfile"))
       banner("Gemfile found, bundle installing...")
-
-      # Bundle install local completes quickly if the gems are already found
-      # locally it fails if it needs to talk to the internet. The || below is
-      # the fallback to the internet-enabled version. It's a speed
-      # optimization.
       Dir.chdir(minitest_path) do
-        run("PATH=#{ENV["PATH"]}:#{Gem.bindir}; " \
-          "bundle install --local || bundle install")
+        run(self.class.bundle_install_command(File.join(minitest_path, "Gemfile")))
       end
     end
 
-    run_ruby_script!("#{runner} #{minitest_path}")
+    run_ruby_script!(self.class.runner_command(runner, minitest_path))
+  end
+
+  # Builds the bundle install command for a suite's own Gemfile.
+  #
+  # bundler is invoked through the Ruby that is running Busser rather than
+  # whatever `bundle` happens to be on PATH. On a machine with more than one
+  # Ruby those differ, and the wrong one installs the suite's gems where the
+  # runner will not find them. The sibling plugins already do it this way.
+  #
+  # The --local attempt is a speed optimisation: it finishes immediately when
+  # the gems are already present and fails when it would need the network, so
+  # the second attempt is the fallback.
+  #
+  # @param gemfile [String, Pathname] path to the suite's Gemfile
+  # @return [String] the command to run
+  def self.bundle_install_command(gemfile)
+    bundle = [
+      Shellwords.escape(File.join(RbConfig::CONFIG["bindir"], "ruby")),
+      Shellwords.escape(File.join(Gem.bindir, "bundle")),
+      "install", "--gemfile", Shellwords.escape(gemfile.to_s)
+    ].join(" ")
+
+    "#{bundle} --local || #{bundle}"
+  end
+
+  # Builds the command that runs the suite.
+  #
+  # Both paths are quoted: the suite path is rooted at BUSSER_ROOT, which the
+  # caller chooses, so an unquoted path containing a space would be split by
+  # the shell.
+  #
+  # @param runner [String, Pathname] path to the runner script
+  # @param suite [String, Pathname] the suite directory holding the tests
+  # @return [String] the command to run
+  def self.runner_command(runner, suite)
+    "#{Shellwords.escape(runner.to_s)} #{Shellwords.escape(suite.to_s)}"
   end
 end
