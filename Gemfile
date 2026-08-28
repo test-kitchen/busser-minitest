@@ -13,7 +13,3 @@ group :test do
   gem "minitest", ">= 6.0"
   gem "rake", ">= 13.4"
 end
-
-group :development do
-  gem "simplecov", ">= 1.1"
-end
