@@ -11,6 +11,23 @@
 * Allow Aruba tests to wait 45 seconds (vs. 30). ([@fnichol][])
 
 
+## [0.4.0](https://github.com/test-kitchen/busser-minitest/compare/v0.3.0...v0.4.0) (2026-08-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* Ruby 3.1 and busser releases older than 0.9.0 are no longer supported.
+
+### Features
+
+* require Ruby 3.2 and busser 0.9, adopt release-please ([#61](https://github.com/test-kitchen/busser-minitest/issues/61)) ([6176c03](https://github.com/test-kitchen/busser-minitest/commit/6176c03aef7214c6ecf224d6941218912f738a8c))
+
+
+### Bug Fixes
+
+* run bundler from the same Ruby as the tests, and quote suite paths ([#69](https://github.com/test-kitchen/busser-minitest/issues/69)) ([ed3c492](https://github.com/test-kitchen/busser-minitest/commit/ed3c4922e4a3b9eacab4c2c0d6f8ce0f9bbb4064))
+* stop running a test file that matches both naming conventions twice ([#66](https://github.com/test-kitchen/busser-minitest/issues/66)) ([34b627b](https://github.com/test-kitchen/busser-minitest/commit/34b627b007da8c72148158863c12f06e9d192cc1))
+
 ## 0.2.0 / 2013-05-13
 
 ### Bug fixes
