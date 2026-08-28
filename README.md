@@ -1,111 +1,101 @@
-# Busser::RunnerPlugin::Minitest
+# busser-minitest
 
-[![Gem Version](https://badge.fury.io/rb/busser-minitest.svg)](http://badge.fury.io/rb/busser-minitest)
+[![Gem Version](https://badge.fury.io/rb/busser-minitest.svg)](https://badge.fury.io/rb/busser-minitest)
 
-A Busser runner plugin for the [minitest][minitest_site] testing library
+A [Busser](https://github.com/test-kitchen/busser) runner plugin that runs
+[minitest](https://github.com/minitest/minitest) tests as integration tests.
+
+Busser installs minitest on the machine under test during postinstall, then runs
+the suite's `minitest` directory against it. Both minitest styles work — classic
+`Minitest::Test` subclasses and the `describe`/`it` spec syntax.
 
 ## Status
 
-This software project is no longer under active development as it has no active maintainers. The software may continue to work for some or all use cases, but issues filed in GitHub will most likely not be triaged. If a new maintainer is interested in working on this project please come chat with us in #test-kitchen on Chef Community Slack.
+This software project is no longer under active development as it has no active
+maintainers. The software may continue to work for some or all use cases, but
+issues filed in GitHub will most likely not be triaged. If a new maintainer is
+interested in working on this project please come chat with us in #test-kitchen
+on Chef Community Slack.
 
-## Installation and Setup
+## Requirements
 
-Until proper reference documentation is complete, the [Writing a Test](https://kitchen.ci/docs/writing-test) section of the Test Kitchen's [Getting Started Guide](https://kitchen.ci/docs/) gives a working example of creating test.
+Ruby 3.2 or newer, and busser 0.9.0 or newer. The plugin installs minitest 6.0
+or newer on the machine under test.
+
+## Installation
+
+Busser installs the plugin for you when Test Kitchen runs the suite, so there is
+usually nothing to do. To install it by hand:
+
+```bash
+busser plugin install busser-minitest
+```
 
 ## Usage
 
-Assuming a cookbook with with the following structure (some directories omitted for
-brevity), and a .kitchen.yml has been written with one suite per recipe.
+Put your tests in the `minitest` directory of a suite:
 
 ```text
-.
-├── Berksfile
-├── Berksfile.lock
-├── CHANGELOG.md
-├── README.md
-├── Thorfile
-├── attributes
-│   └── default.rb
-├── chefignore
-├── definitions
-├── files
-│   └── default
-│       ├── bar.txt
-│       ├── foo.txt
-│       └── foobar.txt
-├── libraries
-├── metadata.rb
-├── providers
-├── recipes
-│   ├── bar.rb
-│   ├── default.rb
-│   └── foo.rb
-├── resources
-├── templates
-│   └── default
+test
+`-- integration
+    |-- default             # suite name
+    |   `-- minitest
+    |       |-- Gemfile         # optional
+    |       `-- test_default.rb
+    `-- foo
+        `-- minitest
+            `-- foo_spec.rb
 ```
 
-The test directory follows a similar structure to the recipes directory.  In the integration directory,
-there should be a directory for each recipe, which contains a directory for each busser being used.  In
-this example, we're only using minitest.  Finally, the actual test files themselves live inside the busser
-directory.  The test files must be named either test_*.rb or*_spec.rb in order to be parsed.
+Files are collected recursively, and only names matching `test_*.rb` or
+`*_spec.rb` are run — so helpers named anything else are safe to keep alongside.
 
-```text
-└── test
-    └── integration
-        ├── bar
-        │   └── minitest
-        │       └── test_bar.rb
-        ├── default
-        │   └── minitest
-        │       └── test_default.rb
-        └── foo
-            └── minitest
-                └── test_foo.rb
-```
-
-The test files use standard minitest assertions, constructs etc.  As an example, the test_default.rb file
-listed above might have the following content to check for the existence of a particulare file.
-
+Classic style:
 
 ```ruby
-require 'minitest/autorun'
+require "minitest/autorun"
 
-describe "foobar::default" do
-
-  it "has created foobar.txt" do
-    assert File.exists?("/usr/local/foobar.txt")
+class TestFoobar < Minitest::Test
+  def test_the_file_was_created
+    assert File.exist?("/usr/local/foobar.txt")
   end
 end
 ```
 
-## Development
+Spec style:
 
-* Source hosted at [GitHub][repo]
-* Report issues/questions/feature requests on [GitHub Issues][issues]
+```ruby
+require "minitest/autorun"
 
-Pull requests are very welcome! Make sure your patches are well tested.
-Ideally create a topic branch for every separate change you make. For
-example:
+describe "foobar::default" do
+  it "creates foobar.txt" do
+    _(File.exist?("/usr/local/foobar.txt")).must_equal true
+  end
+end
+```
 
-1. Fork the repo
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+### A note on minitest 6
 
-## Authors
+Expectations must be wrapped in `_()`. The bare form —
+`File.exist?("...").must_equal true` — was removed in minitest 6 and will raise
+`NoMethodError`. `Minitest::Unit::TestCase` was removed back in minitest 5; use
+`Minitest::Test`.
 
-Created and maintained by [Fletcher Nichol][author] (<fnichol@nichol.ca>)
+### Extra gems
+
+If a `Gemfile` is present in the suite directory, it is `bundle install`ed
+before the run, which is how you pull in extra assertion libraries or anything
+else your tests need. The install is attempted with `--local` first and falls
+back to the network.
+
+## Contributing
+
+Bug reports and pull requests are welcome. See
+[CONTRIBUTING.md](CONTRIBUTING.md) for how to set up the project, run the test
+suite, and format your commits.
 
 ## License
 
-Apache 2.0 (see [LICENSE][license])
+Apache License 2.0. See [LICENSE](LICENSE).
 
-
-[author]:           https://github.com/test-kitchen
-[issues]:           https://github.com/test-kitchen/busser-minitest/issues
-[license]:          https://github.com/test-kitchen/busser-minitest/blob/main/LICENSE
-[repo]:             https://github.com/test-kitchen/busser-minitest
-
-[minitest_site]:    https://github.com/seattlerb/minitest
+Originally created by [Fletcher Nichol](https://github.com/fnichol).
