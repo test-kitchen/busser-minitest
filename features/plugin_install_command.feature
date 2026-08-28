@@ -9,5 +9,5 @@ Feature: Plugin install command
 
   Scenario: Running the postinstall generator
     When I run `busser plugin install busser-minitest --force-postinstall`
-    Then a gem named "minitest" is installed
+    Then a gem named "minitest" is installed with version "6.*"
     And the exit status should be 0

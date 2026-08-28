@@ -14,7 +14,7 @@ Feature: Test command
     """
     require 'minitest/autorun'
 
-    class TestAllTheThings < MiniTest::Unit::TestCase
+    class TestAllTheThings < Minitest::Test
       def setup
         @answer = "you know"
       end
@@ -34,14 +34,14 @@ Feature: Test command
       end
 
       it "wins, naturally" do
-        @winning.must_equal true
+        _(@winning).must_equal true
       end
     end
     """
     When I run `busser test minitest`
     Then the output should contain:
     """
-    2 tests, 2 assertions, 0 failures, 0 errors, 0 skips
+    2 runs, 2 assertions, 0 failures, 0 errors, 0 skips
     """
     And the exit status should be 0
 
@@ -56,7 +56,7 @@ Feature: Test command
       let(:twitter) { Twitter.new(false) }
 
       it "never goes down" do
-        twitter.online.must_equal true
+        _(twitter.online).must_equal true
       end
     end
     """

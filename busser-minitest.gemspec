@@ -5,7 +5,7 @@ require "English"
 
 Gem::Specification.new do |gem|
   gem.name = "busser-minitest"
-  gem.required_ruby_version = ">= 3.1"
+  gem.required_ruby_version = ">= 3.2"
   gem.version       = Busser::Minitest::VERSION
   gem.authors       = ["Fletcher Nichol"]
   gem.email         = ["fnichol@nichol.ca"]
@@ -18,9 +18,9 @@ Gem::Specification.new do |gem|
   gem.executables   = []
   gem.require_paths = ["lib"]
 
-  gem.add_dependency "busser"
+  gem.add_dependency "busser", ">= 0.9.0"
 
-  gem.add_development_dependency "aruba"
+  gem.add_development_dependency "aruba", ">= 2.0"
   gem.add_development_dependency "rake"
   gem.add_development_dependency "simplecov"
 end
