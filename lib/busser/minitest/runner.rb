@@ -18,16 +18,17 @@
 
 require "rake/testtask"
 
+require_relative "test_files"
+
 if ARGV.first.nil?
   abort "usage: #{File.basename($PROGRAM_NAME)} <test_base_path>"
 end
 
-base_path = File.expand_path(ARGV.shift)
-test_files = ["#{base_path}/**/*_spec.rb", "#{base_path}/**/test_*.rb"]
+test_files = Busser::Minitest::TestFiles.in(ARGV.shift)
 
 Rake::TestTask.new(:test) do |t|
   t.libs = []
-  t.test_files = FileList[*test_files]
+  t.test_files = test_files
   t.verbose = true
 end
 
