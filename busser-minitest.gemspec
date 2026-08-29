@@ -26,5 +26,9 @@ Gem::Specification.new do |spec|
     "source_code_uri" => spec.homepage,
   }
 
+  # The runner loads rake/testtask on the machine under test, so rake has to
+  # be there. It only ever worked because Chef's omnibus Ruby happens to ship
+  # rake; an isolated Busser root has whatever is installed into it.
   spec.add_dependency "busser", ">= 0.9.0"
+  spec.add_dependency "rake"
 end
